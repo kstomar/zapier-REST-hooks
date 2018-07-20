@@ -1,3 +1,3 @@
 ZapierRestHooks::Engine.routes.draw do
-  resources :hooks, only: [:create, :destroy]
+  root to: 'hooks#create', via: :post
 end
