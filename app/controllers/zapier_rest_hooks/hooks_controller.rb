@@ -2,6 +2,10 @@ require_dependency 'zapier_rest_hooks/application_controller'
 
 module ZapierRestHooks
   class HooksController < ApplicationController
+    if Rails.application.config.action_controller.default_protect_from_forgery
+      skip_before_action :verify_authenticity_token
+    end
+    
     def create
       hook = Hook.new(hook_params)
       render nothing: true, status: 500 && return unless hook.save
