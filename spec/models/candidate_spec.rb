@@ -23,7 +23,6 @@ RSpec.describe Candidate, type: :model do
           body: 'irrelevant',
           status: %w(200 Triggered)
         )
-
         candidate = create(:candidate, organization: organization)
         expect(FakeWeb.last_request.method).to eq('POST')
       end

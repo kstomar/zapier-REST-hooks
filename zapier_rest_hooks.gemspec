@@ -17,15 +17,16 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["spec/**/*"]
 
-  s.add_dependency "rails", ">= 4.2.3"
-  s.add_dependency "rest-client", ">= 1.8.0"
+  s.add_dependency "rails"
+  s.add_dependency "rest-client"
 
-  s.add_development_dependency "rspec-rails", "~> 3.4"
-  s.add_development_dependency "sqlite3", "~> 1.3", ">= 1.3.11"
-  s.add_development_dependency "database_cleaner", "~> 1.5", ">= 1.3.11"
-  s.add_development_dependency "shoulda-matchers", "~> 3.1", ">= 3.1.1"
-  s.add_development_dependency 'factory_bot_rails', '~> 4.7'
-  s.add_development_dependency "fakeweb", "~> 1.3.1"
-  s.add_development_dependency "rubocop", "~> 0.40.0"
-  s.add_development_dependency "codeclimate-test-reporter", "~> 0.5.1"
+  s.add_development_dependency "rspec-rails"
+  s.add_development_dependency "sqlite3"
+  s.add_development_dependency "database_cleaner"
+  s.add_development_dependency "shoulda-matchers"
+  s.add_development_dependency 'factory_bot_rails'
+  s.add_development_dependency "fakeweb"
+  s.add_development_dependency "rubocop"
+  s.add_development_dependency "codeclimate-test-reporter"
+  s.add_development_dependency "byebug"
 end
