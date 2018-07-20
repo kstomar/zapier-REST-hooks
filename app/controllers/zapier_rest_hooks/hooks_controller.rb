@@ -5,7 +5,7 @@ module ZapierRestHooks
     if Rails.application.config.action_controller.default_protect_from_forgery
       skip_before_action :verify_authenticity_token
     end
-    
+
     def create
       hook = Hook.new(hook_params)
       render nothing: true, status: 500 && return unless hook.save
@@ -27,7 +27,7 @@ module ZapierRestHooks
     private
 
     def hook_params
-      params[:event_name] ||= params[:name]
+      params[:event_name] ||= params[:event]
       params[:hook] = params
       params.require(:hook).permit(:event_name, :target_url, :owner_id, :owner_class_name, :subscription_url)
     end

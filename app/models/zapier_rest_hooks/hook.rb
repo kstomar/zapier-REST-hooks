@@ -8,17 +8,14 @@ module ZapierRestHooks
     def self.trigger(event_name, encoded_record, owner = Struct::ZapierApp.new(0))
       hooks = self.hooks(event_name, owner)
       return if hooks.empty?
-
-      unless Rails.env.development?
-        # Trigger each hook if there is more than one for an owner, which can happen.
-        hooks.each do |hook|
-          Rails.logger.info "Triggering REST hook event: #{event_name} / #{hook.inspect}"
-          Rails.logger.info "REST hook record: #{encoded_record}"
-          RestClient.post(hook.target_url, encoded_record) do |response|
-            if response.code.eql? 410
-              Rails.logger.info "Destroying REST hook because of 410 response: #{hook.inspect}"
-              hook.destroy
-            end
+      # Trigger each hook if there is more than one for an owner, which can happen.
+      hooks.each do |hook|
+        Rails.logger.info "Triggering REST hook event: #{event_name} / #{hook.inspect}"
+        Rails.logger.info "REST hook record: #{encoded_record}"
+        RestClient.post(hook.target_url, encoded_record) do |response|
+          if response.code.eql? 410
+            Rails.logger.info "Destroying REST hook because of 410 response: #{hook.inspect}"
+            hook.destroy
           end
         end
       end
